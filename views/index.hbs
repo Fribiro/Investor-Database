@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <title></title>
+</head>
+
+<body>
+  {{> header }}
+
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#" data-slide-to="0" class="active"></li>
+      <li data-target="#" data-slide-to="1"></li>
+      <li data-target="#" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="/img/office1.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="animate__animated animate__fadeInLeft" style="animation-delay: 1s;">Reliable</h5>
+          <p class="animate__animated animate__fadeInRight" style="animation-delay: 2s;">Our team of highly skilled developers and technicians work around the clock to ensure zero to no failure or downtime.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/img/dev.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="animate__animated animate__fadeInLeft" style="animation-delay: 1s;">Secure</h5>
+          <p class="animate__animated animate__fadeInRight" style="animation-delay: 2s;">Stringent policies and measures have been put in place to ensure atmost security of your data and transactions carried out on our platform.</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="/img/office.jpg" class="d-block w-100" alt="...">
+        <div class="carousel-caption d-none d-md-block">
+          <h5 class="animate__animated animate__fadeInLeft" style="animation-delay: 1s;">Transparent</h5>
+          <p class="animate__animated animate__fadeInRight" style="animation-delay: 2s;">Structures are in place to facilitate openness in the way business is carried out.</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <div class="home-content">
+    <div class="section-one">
+      <div class="section-one-img animate__animated animate__fadeInLeft" style="animation-delay: 1s;">
+        <img src="/img/businessman.jpg" alt="">
+      </div>
+      <div class="section-one-text animate__animated animate__fadeInRight" style="animation-delay: 2s;">
+        <h2>INVEST WITH US</h2>
+        <p>Ready to invest and earn from the comfort of your seat? Look no further, we bring to you the best online business experience. At you disposal is a pool of entrepreneurs running their businesses but in search of funding to take their enterprises to the next level. </p>
+        <div class="get-started-btn">
+          <button type="button" name="button">Get Started</button>
+        </div>
+      </div>
+    </div>
+    <main></main>
+    <div class="section-two">
+      <div class="section-two-text animate__animated animate__fadeInLeft" style="animation-delay: 2s;">
+        <h2>GROW WITH US</h2>
+        <p>Have you been in constant thought? Do you seek to grow your enterprise? Well, you're in the right place. With us, you and your business are exposed to a consortium of investor ready to fund your enterprise. You're welcome to join our database of like minded people with a common drive and goal.</p><br>
+        <div class="get-started-btn">
+          <button type="button" name="button">Get Started</button>
+        </div>
+      </div>
+      <div class="section-two-img animate__animated animate__fadeInRight" style="animation-delay: 1s;">
+        <img src="/img/board.jpg" alt="">
+      </div>
+    </div>
+  </div>
+
+  {{> footer }}
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
