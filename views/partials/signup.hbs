@@ -1,0 +1,58 @@
+<div class="form-container sign-up-container">
+
+    <h1 style="padding: 0px 50px;
+      text-align: center;">Register</h1>
+    <div class="signup-category">
+      <div class="selected entrepreneur-grid">
+        Entrepreneur
+      </div>
+      <div class="investor-grid">
+        Investor
+      </div>
+
+  </div>
+    <form class="show" id="entrepreneurSignup" action="/auth/signup" method="post">
+    <div class="social-container">
+      <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+      <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <span>or use your email for registration ent</span>
+    <div>
+      <div class="name-control">
+        <input class="firstName" class="input-control" type="text" name="firstName" placeholder="First Name">
+        <input class="lastName" class="input-control" type="text" name="lastName" placeholder="Last Name">
+      </div>
+      <input class="input-control" type="email" name="email" placeholder="Email">
+      <input class="input-control" type="password" name="password" placeholder="Password">
+      <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
+    </div>
+    <div class="check-control" id="check-Up">
+      <input type="checkbox" name="" value="" />
+      <label class="checklabel">I Agree to the <a href="#">Terms & Conditions</a>.</label>
+    </div>
+    <button>Sign Up</button>
+  </form>
+    <form id="investorSignup" action="/auth/signup" method="post">
+    <div class="social-container">
+      <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+      <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <span>or use your email for registration</span>
+    <div>
+      <div class="name-control">
+        <input class="firstName" class="input-control" type="text" name="firstName" placeholder="First Name">
+        <input class="lastName" class="input-control" type="text" name="lastName" placeholder="Last Name">
+      </div>
+      <input class="input-control" type="email" name="email" placeholder="Email">
+      <input class="input-control" type="password" name="password" placeholder="Password">
+      <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
+    </div>
+    <div class="check-control" id="check-Up">
+      <input type="checkbox" name="" value="" />
+      <label class="checklabel">I Agree to the <a href="#">Terms & Conditions</a>.</label>
+    </div>
+    <button>Sign Up</button>
+  </form>
+</div>

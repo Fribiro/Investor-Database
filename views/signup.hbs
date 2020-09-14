@@ -1,95 +1,7 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
 
-<head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="/css/signup.css">
-  <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-  <!--<script src="js/account.js"></script>-->
-  <title></title>
-</head>
-
-<body>
   <div class="container" id="container">
-    <div class="form-container sign-up-container">
-
-        <h1 style="padding: 0px 50px;
-          text-align: center;">Register</h1>
-        <div class="signup-category">
-          <div class="selected entrepreneur-grid">
-            Entrepreneur
-          </div>
-          <div class="investor-grid">
-            Investor
-          </div>
-
-      </div>
-        <form class="show" id="entrepreneurSignup" action="/auth/signup" method="post">
-        <div class="social-container">
-          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <span>or use your email for registration ent</span>
-        <div>
-          <div class="name-control">
-            <input id="firstName" class="input-control" type="text" name="firstName" placeholder="First Name">
-            <input id="lastName" class="input-control" type="text" name="lastName" placeholder="Last Name">
-          </div>
-          <input class="input-control" type="email" name="email" placeholder="Email">
-          <input class="input-control" type="password" name="password" placeholder="Password">
-          <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
-        </div>
-        <div class="check-control" id="check-Up">
-          <input type="checkbox" name="" value="" />
-          <label class="checklabel">I Agree to the <a href="#">Terms & Conditions</a>.</label>
-        </div>
-        <button>Sign Up</button>
-      </form>
-        <form id="investorSignup" action="/auth/signup" method="post">
-        <div class="social-container">
-          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <span>or use your email for registration</span>
-        <div>
-          <div class="name-control">
-            <input id="firstName" class="input-control" type="text" name="firstName" placeholder="First Name">
-            <input id="lastName" class="input-control" type="text" name="lastName" placeholder="Last Name">
-          </div>
-          <input class="input-control" type="email" name="email" placeholder="Email">
-          <input class="input-control" type="password" name="password" placeholder="Password">
-          <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password" required>
-        </div>
-        <div class="check-control" id="check-Up">
-          <input type="checkbox" name="" value="" />
-          <label class="checklabel">I Agree to the <a href="#">Terms & Conditions</a>.</label>
-        </div>
-        <button>Sign Up</button>
-      </form>
-    </div>
-    <div class="form-container sign-in-container">
-      <form id="userlogin"action="/auth/login" method="post">
-        <h1>Sign in</h1>
-        <div class="social-container">
-          <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-          <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-        <span>or use your account</span>
-        <div>
-          <input class="input-control" type="email" placeholder="Email" />
-          <input class="input-control" type="password" placeholder="Password" />
-        </div>
-        <div class="check-control" id="check-In">
-          <input id="check" type="checkbox" name="" value="" />
-          <label for="check" class="checklabel">Remember me.</label>
-        </div>
-        <a id="forgot" href="#">Forgot your password?</a>
-        <button>Sign In</button>
-      </form>
-    </div>
+    {{> signup }}
+    {{> login }}
     <div class="overlay-container">
       <div class="overlay">
         <div class="overlay-panel overlay-left">
@@ -140,6 +52,3 @@
       investorSection.classList.add('show');
     });
   </script>
-</body>
-
-</html>

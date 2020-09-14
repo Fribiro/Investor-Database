@@ -1,6 +1,7 @@
 const mysql = require("mysql");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs')
+//const db = require("./config/dbconfig");
 
 // TODO: write the dbconnection and import it into the neccessary pages
 const db = mysql.createConnection({
@@ -28,18 +29,17 @@ exports.login = async (req, res) => {
       //bcryptcompare compares the password being typed with the one in the db
       console.log(results);
       if (!results || !(await bcrypt.compare(password, results[0].password))) {
-        res.status(401).render('login', {
+        return res.status(401).render('login', {
           message: 'Email or Password is incorrect'
         })
       } else {
         const id = results[0].id;
 
         //token to enable us communicate with the cookie
-        const token = jwt.sign({
-          id
-        }, process.env.JWT_SECRET, {
-          expires: process.env.JWT_EXPIRES_IN
-        });
+        const token = jwt.sign(
+          {id}, //or id:id
+          process.env.JWT_SECRET,
+          {expires: process.env.JWT_EXPIRES_IN});
         console.log("The token is: " + token);
 
         const cookieOptions = {
@@ -61,51 +61,51 @@ exports.login = async (req, res) => {
 }
 //signup function
 exports.signup = (req, res) => {
-    console.log(req.body); //grabs data we sent from the Form
+  console.log(req.body); //grabs data we sent from the Form
 
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword
-    } = req.body;
+  const {
+    firstName,
+    lastName,
+    email,
+    password,
+    confirmPassword
+  } = req.body;
 
-    //hinder sql injection by allowing each person to use only one email address
-    db.query('SELECT email FROM signup WHERE email = ?', [email], async (error, results) => {
+  //hinder sql injection by allowing each person to use only one email address
+  db.query('SELECT email FROM signup WHERE email = ?', [email], async (error, results) => {
+    if (error) {
+      console.log(error);
+    }
+    if (results.length > 0) {
+      //prevent use of an email already in the db
+      return res.render('signup', {
+        message: 'That email is already in use'
+      });
+    } else if (password !== confirmPassword) {
+      return res.render('signup', {
+        message: 'Passwords do not match'
+      });
+    }
+    //do 8 runds of hashing
+    let hashedPassword = await bcrypt.hash(password, 8);
+    console.log(hashedPassword);
+    //test
+    //res.send('testing');
+
+    db.query('INSERT INTO signup SET ?', {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: hashedPassword
+    }, (error, results) => {
       if (error) {
         console.log(error);
-      }
-      if (results.length > 0) {
-        //prevent use of an email already in the db
-        return res.render('signup', {
-          message: 'That email is already in use'
-        });
-      } else if (password !== confirmPassword) {
-        return res.render('signup', {
-          message: 'Passwords do not match'
+      } else {
+        console.log(results);
+        return res.render('/login', {
+          message: 'User registered'
         });
       }
-      //do 8 runds of hashing
-      let hashedPassword = await bcrypt.hash(password, 8);
-      console.log(hashedPassword);
-      //test
-      //res.send('testing');
-
-      db.query('INSERT INTO signup SET ?', {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: hashedPassword
-      }, (error, results) => {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log(results);
-          return res.render('signup', {
-            message: 'User registered'
-          });
-        }
-      })
-    });
-  }
+    })
+  });
+}

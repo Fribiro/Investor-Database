@@ -1,0 +1,139 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+.header {
+    position: absolute;
+    height: 44px;
+    width: 100%;
+    background-color: #3DB2C7;
+    z-index: 4;
+}
+button {
+    border-radius: 20px;
+    border: 2px solid #fff;
+    background: #111;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: .8;
+  }
+h2 {
+    font-size: 26px;
+    margin: 10px;
+    font-family: 'Abril Fatface', cursive;
+}
+.header-content {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+}
+form {
+    display: initial;
+    width: 100%;
+    margin-left: 1120px;
+    padding: 5px;
+    margin-left: 550px;
+}
+.main-content {
+    padding-top: 44px;
+    height: 100vh;
+}
+.sidebar {
+    position: absolute;
+    width: 100%;
+    background-color: #111;
+    height: 100vh;
+    z-index: 3;
+    padding-top: 44px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar ul li {
+    padding: 20px 10px;
+    border-bottom: 1px solid #3DB2C7;
+}
+.sidebar ul li a {
+    color: oldlace;
+    text-decoration: none;
+}
+.sidebar ul li a i {
+    color: #3DB2C7;
+}
+    
+@media screen and (min-width: 600px) {
+    .sidebar {
+        width: 80px;
+    }
+    .sidebar ul li {
+        text-align: center;
+    }
+    .sidebar ul li span:nth-child(2) {
+        display: none;
+    }
+    .sidebar ul li i {
+        font-size: 26px;
+    }
+    .main-content {
+        margin-left: 80px;
+        height: 100vh;
+    }
+}
+@media screen  and (min-width: 1000px) {
+    .sidebar {
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+    }
+    .sidebar ul li {
+        text-align: left;
+    }
+    .sidebar ul li span:nth-child(2) {
+        display: inline;
+    }
+    .sidebar ul li i {
+        font-size: 16px;
+    }
+    .main-content {
+        margin-left: 200px;
+        height: 100vh;
+    }
+    .container {
+        padding: 100px;
+    }
+    .table {
+        max-width: 900px;
+        margin: 0 auto;
+        height: 50vh;
+        }
+        #table th, td {
+        white-space: nowrap;
+        }
+        table.dataTable thead .sorting:after,
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting_asc:after,
+        table.dataTable thead .sorting_asc:before,
+        table.dataTable thead .sorting_asc_disabled:after,
+        table.dataTable thead .sorting_asc_disabled:before,
+        table.dataTable thead .sorting_desc:after,
+        table.dataTable thead .sorting_desc:before,
+        table.dataTable thead .sorting_desc_disabled:after,
+        table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
+        }
+}

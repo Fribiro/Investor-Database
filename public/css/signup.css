@@ -146,12 +146,12 @@ a {
   grid-column-gap: 20px;
 }
 
-#firstName {
+.firstName {
   grid-column: 1;
   grid-row: 1;
 }
 
-#lastName {
+.lastName {
   grid-column: 2;
   grid-row: 1;
 }
@@ -300,9 +300,12 @@ button.ghost {
 }
 
 /*Animation*/
-/*move signInto the right*/
+/*move signIn to the right*/
 .container.right-panel-active .sign-in-container {
   transform: translateX(100%);
+}
+.container.right-panel-active .sign-in-container h1 {
+  padding-top: 64px;
 }
 
 /*move overlay to left*/
