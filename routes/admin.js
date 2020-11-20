@@ -13,7 +13,7 @@ const db = mysql.createConnection({
 //route for homepage
 router.get('/admin', (req, res) => {
 
-  let sql = "SELECT * FROM signup";
+  let sql = "SELECT * FROM investorSignup";
   let query = db.query(sql, (err, results) => {
     if (err) throw err;
     res.render('admin', {
@@ -36,7 +36,7 @@ router.post('/save', (req, res) => {
 
 //route for update data
 router.post('/update', (req, res) => {
-  let sql = "UPDATE signup SET firstName='" + req.body.firstName + "',middleName='" + req.body.middleName + "',lastName='" + req.body.lastName + "', email='" + req.body.email + "', password='" + req.body.password + "' WHERE id=" + req.body.id;
+  let sql = "UPDATE investorSignup SET firstName='" + req.body.firstName + "',middleName='" + req.body.middleName + "',lastName='" + req.body.lastName + "', email='" + req.body.email + "', password='" + req.body.password + "' WHERE id=" + req.body.id;
   let query = db.query(sql, (err, results) => {
     if (err) throw err;
     res.redirect('/');

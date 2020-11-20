@@ -1,19 +1,19 @@
 const express = require("express");
 const path = require("path");
 const mysql = require("mysql");
-//const dotenv = require("dotenv"); //dotenv for protecting crucial info such as passwords
+const dotenv = require("dotenv"); //dotenv for protecting crucial info such as passwords
 const cookieParser = require("cookie-parser");
 const hbs = require("express-handlebars");
 const session = require("express-session");
-const db = require("./config/dbconfig");
+//const db = require("./config/dbconfig");
 
-/*dotenv.config({
+dotenv.config({
   path: './.env'
-});*/
+});
 
 const app = express();
 
-/*const db = mysql.createConnection({
+  const db = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
   password: process.env.DATABASE_PASSWORD,
@@ -27,7 +27,7 @@ db.connect((error) => {
     console.log("MySQL Connected...")
   }
 });
-*/
+
 const publicDirectory = path.join(__dirname, './public');
 app.use(express.static(publicDirectory));
 

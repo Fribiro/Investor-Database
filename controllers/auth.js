@@ -59,20 +59,20 @@ exports.login = async (req, res) => {
 
   }
 }
-//signup function
+//signup function for investors
 exports.signup = (req, res) => {
   console.log(req.body); //grabs data we sent from the Form
 
   const {
-    firstName,
-    lastName,
-    email,
-    password,
-    confirmPassword
+    ifirstName,
+    ilastName,
+    iemail,
+    ipassword,
+    iconfirmPassword
   } = req.body;
 
   //hinder sql injection by allowing each person to use only one email address
-  db.query('SELECT email FROM signup WHERE email = ?', [email], async (error, results) => {
+  db.query('SELECT email FROM investorSignup WHERE email = ?', [iemail], async (error, results) => {
     if (error) {
       console.log(error);
     }
@@ -81,21 +81,72 @@ exports.signup = (req, res) => {
       return res.render('signup', {
         message: 'That email is already in use'
       });
-    } else if (password !== confirmPassword) {
+    } else if (ipassword !== iconfirmPassword) {
       return res.render('signup', {
         message: 'Passwords do not match'
       });
     }
     //do 8 runds of hashing
-    let hashedPassword = await bcrypt.hash(password, 8);
+    let hashedPassword = await bcrypt.hash(ipassword, 8);
     console.log(hashedPassword);
     //test
     //res.send('testing');
 
-    db.query('INSERT INTO signup SET ?', {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
+    db.query('INSERT INTO investorSignup SET ?', {
+      firstName: ifirstName,
+      lastName: ilastName,
+      email: iemail,
+      password: hashedPassword
+    }, (error, results) => {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log(results);
+        return res.render('/login', {
+          message: 'User registered'
+        });
+      }
+    })
+  });
+}
+
+//signup function for entrepreneurs
+exports.signup = (req, res) => {
+  console.log(req.body); //grabs data we sent from the Form
+
+  const {
+    efirstName,
+    elastName,
+    eemail,
+    epassword,
+    econfirmPassword
+  } = req.body;
+
+  //hinder sql injection by allowing each person to use only one email address
+  db.query('SELECT email FROM entrepreneurSignup WHERE email = ?', [eemail], async (error, results) => {
+    if (error) {
+      console.log(error);
+    }
+    if (results.length > 0) {
+      //prevent use of an email already in the db
+      return res.render('signup', {
+        message: 'That email is already in use'
+      });
+    } else if (epassword !== econfirmPassword) {
+      return res.render('signup', {
+        message: 'Passwords do not match'
+      });
+    }
+    //do 8 runds of hashing
+    let hashedPassword = await bcrypt.hash(epassword, 8);
+    console.log(hashedPassword);
+    //test
+    //res.send('testing');
+
+    db.query('INSERT INTO entrepreneurSignup SET ?', {
+      firstName: efirstName,
+      lastName: elastName,
+      email: eemail,
       password: hashedPassword
     }, (error, results) => {
       if (error) {

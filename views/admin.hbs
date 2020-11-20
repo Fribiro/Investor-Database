@@ -62,11 +62,11 @@
                         <td>{{ email }}</td>
                         <td>{{ password }}</td>
                         <td>
-                            <form><a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-id="{{ id }}"
+                            <form action="/admin/update" method="post" ><a href="javascript:void(0);" class="btn btn-sm btn-info edit" data-id="{{ id }}"
                                 data-firstName="{{ firstName }}" data-middleName="{{ middleName }}"
                                 data-lastName="{{ middleName }}" data-email="{{ email }}"
                                 data-password="{{ password }}">Edit</a></form>
-                            <form><a href="javascript:void(0);" class="btn btn-sm btn-danger delete"
+                            <form action="/admin/delete" method="post" ><a href="javascript:void(0);" class="btn btn-sm btn-danger delete"
                                 data-id="{{ id }}">Delete</a></form>
                         </td>
                     </tr>
