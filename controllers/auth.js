@@ -1,6 +1,13 @@
 const mysql = require("mysql");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs')
+const {
+  createAccessToken,
+  createRefreshToken,
+  sendAccessToken,
+  sendRefreshToken,
+} = require("../middleware/tokens");
+const { isAuth } = require("../middleware/auth");
 //const db = require("./config/dbconfig");
 
 // TODO: write the dbconnection and import it into the neccessary pages
@@ -25,7 +32,7 @@ exports.login = async (req, res) => {
         message: 'Please provide an email and password'
       })
     }
-    db.query('SELECT * FROM signup WHERE email = ?', [email], async (error, results) => {
+    db.query('SELECT * FROM entrepreneurSignup WHERE email = ?', [email], async (error, results) => {
       //bcryptcompare compares the password being typed with the one in the db
       console.log(results);
       if (!results || !(await bcrypt.compare(password, results[0].password))) {
@@ -33,25 +40,18 @@ exports.login = async (req, res) => {
           message: 'Email or Password is incorrect'
         })
       } else {
-        const id = results[0].id;
+        const accesstoken = createAccessToken(results.Id);
+        const refreshtoken = createRefreshToken(results.Id);
 
-        //token to enable us communicate with the cookie
-        const token = jwt.sign(
-          {id}, //or id:id
-          process.env.JWT_SECRET,
-          {expires: process.env.JWT_EXPIRES_IN});
-        console.log("The token is: " + token);
+        //insert the refreshtoken into the db
+        results.refreshtoken = refreshtoken;
+        console.log(results);
 
-        const cookieOptions = {
-          expires: new Date(
-            Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
-          ),
-          //prevent hacking of cookies
-          httpOnly: true
-        }
+        //send refreshtoken as a cookie and the accesstoken as a regular response
+        sendRefreshToken(res, refreshtoken);
+        sendAccessToken(res, req, accesstoken);
       }
-      res.cookie('jwt', token, cookieOptions);
-      res.status(200).redirect("/"); //redirect user to homepage
+      
     })
   } catch (error) {
     console.log(error)
@@ -59,56 +59,58 @@ exports.login = async (req, res) => {
 
   }
 }
+
+
 //signup function for investors
-exports.signup = (req, res) => {
-  console.log(req.body); //grabs data we sent from the Form
+// exports.signup = (req, res) => {
+//   console.log(req.body); //grabs data we sent from the Form
 
-  const {
-    ifirstName,
-    ilastName,
-    iemail,
-    ipassword,
-    iconfirmPassword
-  } = req.body;
+//   const {
+//     ifirstName,
+//     ilastName,
+//     iemail,
+//     ipassword,
+//     iconfirmPassword
+//   } = req.body;
 
-  //hinder sql injection by allowing each person to use only one email address
-  db.query('SELECT email FROM investorSignup WHERE email = ?', [iemail], async (error, results) => {
-    if (error) {
-      console.log(error);
-    }
-    if (results.length > 0) {
-      //prevent use of an email already in the db
-      return res.render('signup', {
-        message: 'That email is already in use'
-      });
-    } else if (ipassword !== iconfirmPassword) {
-      return res.render('signup', {
-        message: 'Passwords do not match'
-      });
-    }
-    //do 8 runds of hashing
-    let hashedPassword = await bcrypt.hash(ipassword, 8);
-    console.log(hashedPassword);
-    //test
-    //res.send('testing');
+//   //hinder sql injection by allowing each person to use only one email address
+//   db.query('SELECT email FROM investorSignup WHERE email = ?', [iemail], async (error, results) => {
+//     if (error) {
+//       console.log(error);
+//     }
+//     if (results.length > 0) {
+//       //prevent use of an email already in the db
+//       return res.render('signup', {
+//         message: 'That email is already in use'
+//       });
+//     } else if (ipassword !== iconfirmPassword) {
+//       return res.render('signup', {
+//         message: 'Passwords do not match'
+//       });
+//     }
+//     //do 8 runds of hashing
+//     let hashedPassword = await bcrypt.hash(ipassword, 8);
+//     console.log(hashedPassword);
+//     //test
+//     //res.send('testing');
 
-    db.query('INSERT INTO investorSignup SET ?', {
-      firstName: ifirstName,
-      lastName: ilastName,
-      email: iemail,
-      password: hashedPassword
-    }, (error, results) => {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log(results);
-        return res.render('/login', {
-          message: 'User registered'
-        });
-      }
-    })
-  });
-}
+//     db.query('INSERT INTO investorSignup SET ?', {
+//       firstName: ifirstName,
+//       lastName: ilastName,
+//       email: iemail,
+//       password: hashedPassword
+//     }, (error, results) => {
+//       if (error) {
+//         console.log(error);
+//       } else {
+//         console.log(results);
+//         return res.render('/login', {
+//           message: 'User registered'
+//         });
+//       }
+//     })
+//   });
+// }
 
 //signup function for entrepreneurs
 exports.signup = (req, res) => {

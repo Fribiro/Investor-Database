@@ -1,45 +1,6 @@
-<div class="header">
-    <div class="toggle">
-        <a href="" class="nav-toggle">
-            <span></span>
-        </a>
-    </div>
-    <div class="header-content">
-        <h2>Admin Panel</h2>
-        <!--<form action="">
-            <button type="submit">Logout</button>
-        </form>-->
-    </div>
-</div>
-<div class="sidebar">
-    <nav>
-        <ul>
-            <li>
-                <a href="">
-                    <span><i></i></span>
-                    <span>Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span><i class="fa fa-user"></i></span>
-                    <span>Users</span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span><i class="fa fa-envelope"></i></span>
-                    <span>Messages</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
-
-{{!-- {{> admin/inv_admin }} --}}
 <div class="main-content">
     <div class="container">
-        <h2>Investors</h2>
+        <h2>Entrepreneurs</h2>
         <div class="">
             <table id="table" class="table table-responsive table-striped table-hover table-sm"
                 style="overflow-y: scroll; cellspacing=" 0"">
@@ -77,13 +38,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function () {
-        $('#table').DataTable({
-            "scrollX": true,
-            "scrollY": 200,
-        });
-        $('.dataTables_length').addClass('bs-select');
-    });
-</script>

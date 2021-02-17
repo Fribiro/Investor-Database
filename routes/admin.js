@@ -45,7 +45,7 @@ router.post('/update', (req, res) => {
 
 //route for delete data
 router.post('/delete', (req, res) => {
-  let sql = "DELETE FROM signup WHERE id=" + req.body.id + "";
+  let sql = "DELETE FROM investorSignup WHERE id=" + req.body.id + "";
   let query = db.query(sql, (err, results) => {
     if (err) throw err;
     res.redirect('/');

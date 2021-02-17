@@ -7,9 +7,12 @@
       <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
     </div>
     <span>or use your account</span>
+    {{#if message}}
+    <h4 class='alert alert-danger mt-4'>{{message}}</h4>
+    {{/if}}
     <div>
-      <input class="input-control" type="email" placeholder="Email" />
-      <input class="input-control" type="password" placeholder="Password" />
+      <input class="input-control" name="email" type="email" placeholder="Email" />
+      <input class="input-control" name="password" type="password" placeholder="Password" />
     </div>
     <div class="check-control" id="check-In">
       <input id="check" type="checkbox" name="" value="" />

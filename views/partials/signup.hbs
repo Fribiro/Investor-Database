@@ -19,6 +19,9 @@
     </div>
     <span>or use your email for registration ent</span>
     <div>
+      {{#if message}}
+      <h4 class='alert alert-danger mt-4'>{{message}}</h4>
+      {{/if}}
       <div class="name-control">
         <input class="firstName" class="input-control" type="text" name="efirstName" placeholder="First Name">
         <input class="lastName" class="input-control" type="text" name="elastName" placeholder="Last Name">
@@ -42,6 +45,9 @@
     </div>
     <span>or use your email for registration</span>
     <div>
+      {{#if message}}
+      <h4 class='alert alert-danger mt-4'>{{message}}</h4>
+      {{/if}}
       <div class="name-control">
         <input class="firstName" class="input-control" type="text" name="ifirstName" placeholder="First Name">
         <input class="lastName" class="input-control" type="text" name="ilastName" placeholder="Last Name">
@@ -57,3 +63,4 @@
     <button>Sign Up</button>
   </form>
 </div>
+

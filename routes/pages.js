@@ -34,12 +34,12 @@ router.get('/investor', (req, res) => {
   });
 });
 
-router.get('/entrepreneur', auth, (req, res) => {
-  res.render('entrepreneur', {
-    title: 'Investment | Indusries',
-    style: 'style.css'
-  });
-});
+// router.get('/entrepreneur', auth, (req, res) => {
+//   res.render('entrepreneur', {
+//     title: 'Investment | Indusries',
+//     style: 'style.css'
+//   });
+// });
 
 router.get('/about', (req, res) => {
   res.render('about', {

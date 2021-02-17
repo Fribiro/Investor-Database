@@ -7,7 +7,26 @@ router.post('/signup', authController.signup );
 
 router.post('/login', authController.login );
 
-router.post('/logout', () => {
-
+router.post("/logout", (_req, res) => {
+  res.clearCookie("refreshtoken", { path: "/refresh_token" });
+  return res.send({
+    message: "Logged out",
+  });
 });
+
+router.post("/protected", async (req, res) => {
+  try {
+    const userId = isAuth(req);
+    if (userId !== null) {
+      res.send({
+        data: "This is protected data.",
+      });
+    }
+  } catch (err) {
+    res.send({
+      error: `${err.message}`,
+    });
+  }
+});
+
 module.exports = router;

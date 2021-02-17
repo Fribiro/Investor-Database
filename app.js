@@ -39,26 +39,6 @@ app.use(express.urlencoded({
 app.use(express.json());
 app.use(cookieParser());
 
-/*const TWO_HOURS = 1000 * 60 * 60 * 2;
-const {
-  NODE_ENV = 'development',
-  SESS_NAME = 'sid',
-  SESS_SECRET = 'money',
-  SESS_LIFETIME = TWO_HOURS
-} = process.env
-const IN_PROD = NODE_ENV === 'production'
-app.use(session({
-  name: SESS_NAME,
-  resave: false,
-  saveUninitialized: false,
-  secret: SESS_SECRET,
-  cookie: {
-    maxAge: SESS_LIFETIME,
-    sameSite: true,
-    secure: IN_PROD
-  }
-}));*/
-
 //view engine setup
 app.engine('hbs', hbs({
   extname: 'hbs',
