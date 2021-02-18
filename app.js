@@ -28,9 +28,6 @@ db.connect((error) => {
   }
 });
 
-const publicDirectory = path.join(__dirname, './public');
-app.use(express.static(publicDirectory));
-
 //parse URL encoded bodies as sent by HTML forms. Enables us to grab data from any form
 app.use(express.urlencoded({
   extended: false
@@ -54,6 +51,9 @@ app.use('/auth', require('./routes/auth'));
 app.use(express.static('public'));
 //app.use(express.static('public/img'));
 //app.use(express.static('public/js'));
+
+const publicDirectory = path.join(__dirname, "./public");
+app.use(express.static(publicDirectory));
 
 app.listen(5000, () => {
   console.log("Server started on PORT 5000")

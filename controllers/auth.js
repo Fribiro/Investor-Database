@@ -7,7 +7,7 @@ const {
   sendAccessToken,
   sendRefreshToken,
 } = require("../middleware/tokens");
-const { isAuth } = require("../middleware/auth");
+
 //const db = require("./config/dbconfig");
 
 // TODO: write the dbconnection and import it into the neccessary pages
@@ -50,6 +50,8 @@ exports.login = async (req, res) => {
         //send refreshtoken as a cookie and the accesstoken as a regular response
         sendRefreshToken(res, refreshtoken);
         sendAccessToken(res, req, accesstoken);
+
+        return res.render('profile');
       }
       
     })
